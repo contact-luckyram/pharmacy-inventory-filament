@@ -13,11 +13,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory()->create([
+        User::create([
             'name' => 'Demo Admin',
             'email' => 'admin@medistock.test',
             'password' => 'password',
-        ]);
+        ])->forceFill(['email_verified_at' => now()])->save();
 
         $this->call([
             CatalogSeeder::class,

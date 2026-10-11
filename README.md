@@ -18,7 +18,7 @@ low stock and expiring batches, and creates bills with live totals.
 | **Billing (POS)** | New bill with a repeater of medicines. Price fills in automatically, quantity can't exceed stock, the same medicine can't be added twice, and the total updates live. Invoice numbers like `INV-20261012-0001` |
 | **Stock logic** | Selling deducts units **FEFO** (first expiry, first out) inside a database transaction |
 | **Setup** | Categories and suppliers (with GSTIN validation) managed in quick modal forms |
-| **Auth** | Login and profile page from Filament |
+| **Auth** | Login and profile page from Filament, plus a demo mode for public links |
 
 ## Tech stack
 
@@ -61,6 +61,22 @@ To use MySQL, set `DB_CONNECTION=mysql` and the `DB_*` values in `.env`, then ru
 
 To reset the demo data at any time: `php artisan migrate:fresh --seed`.
 </details>
+
+## Free live demo on Render
+
+The repo includes a `Dockerfile` and `render.yaml`, so it runs on Render's **free** plan.
+
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/contact-luckyram/pharmacy-inventory-filament)
+
+1. Sign in at [render.com](https://render.com) with GitHub.
+2. Click **New → Blueprint**, pick this repo, and click **Apply** (or use the button above).
+3. Wait for the first build (about 5–10 minutes). Your link looks like `https://medistock.onrender.com/admin`.
+
+How the demo behaves:
+
+- `DEMO_MODE=true` pre-fills the login form and hides the profile page, so visitors can't change the shared password.
+- The database is rebuilt with fresh sample data every time the service starts, so it resets itself.
+- The free plan sleeps after 15 minutes without visitors; the next visit takes about a minute to wake it. Open the link a minute before a client call.
 
 ## Run the tests
 

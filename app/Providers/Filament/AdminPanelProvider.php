@@ -2,6 +2,7 @@
 
 namespace App\Providers\Filament;
 
+use App\Filament\Pages\Auth\Login;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\AuthenticateSession;
 use Filament\Http\Middleware\DisableBladeIconComponents;
@@ -23,12 +24,11 @@ class AdminPanelProvider extends PanelProvider
 {
     public function panel(Panel $panel): Panel
     {
-        return $panel
+        $panel
             ->default()
             ->id('admin')
             ->path('admin')
-            ->login()
-            ->profile()
+            ->login(Login::class)
             ->brandName('MediStock')
             ->colors([
                 'primary' => Color::Teal,
@@ -65,5 +65,12 @@ class AdminPanelProvider extends PanelProvider
             ->authMiddleware([
                 Authenticate::class,
             ]);
+
+        // On the public demo, visitors share one account, so they can't change its email or password.
+        if (! config('app.demo')) {
+            $panel->profile();
+        }
+
+        return $panel;
     }
 }

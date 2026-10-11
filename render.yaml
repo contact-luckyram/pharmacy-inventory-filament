@@ -1,0 +1,17 @@
+# Render Blueprint: one free web service running the Dockerfile.
+# Deploy: render.com → New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: medistock
+    runtime: docker
+    plan: free
+    region: singapore
+    branch: main
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /up
+    autoDeploy: true
+    envVars:
+      - key: APP_NAME
+        value: MediStock
+      - key: DEMO_MODE
+        value: "true"

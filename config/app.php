@@ -30,6 +30,18 @@ return [
 
     /*
     |--------------------------------------------------------------------------
+    | Demo Mode
+    |--------------------------------------------------------------------------
+    |
+    | Pre-fills the login form and hides the profile page so a public demo
+    | can't be locked by a visitor changing the shared password.
+    |
+    */
+
+    'demo' => (bool) env('DEMO_MODE', false),
+
+    /*
+    |--------------------------------------------------------------------------
     | Application Debug Mode
     |--------------------------------------------------------------------------
     |
