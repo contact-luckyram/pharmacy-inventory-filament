@@ -3,7 +3,7 @@
 Admin panel for a retail pharmacy, built with **Laravel 13** and **Filament 5**.
 Tracks medicines by batch and expiry date, sells the oldest stock first, alerts on low and expiring stock, and creates bills with live totals.
 
-**[Live demo](https://medistock-xiyz.onrender.com/admin)** — click **Sign in** (login is pre-filled).
+Runs locally in a few minutes with sample data and a ready-made login — see [Setup](#setup).
 
 ![Dashboard](docs/screenshots/dashboard.jpg)
 
