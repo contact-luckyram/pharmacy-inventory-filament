@@ -10,6 +10,28 @@ low stock and expiring batches, and creates bills with live totals.
 
 ---
 
+## Screenshots
+
+**Dashboard** — today's sales, stock value, low-stock and expiry alerts, 14-day revenue chart
+
+![Dashboard](docs/screenshots/dashboard.jpg)
+
+**Medicines** — search, filters, low-stock tab and colour-coded stock badges
+
+![Medicines list](docs/screenshots/medicines.jpg)
+
+**Stock batches** — every medicine's batches with expiry warnings
+
+![Stock batches](docs/screenshots/stock-batches.jpg)
+
+**New bill** — price fills in automatically and the total updates live
+
+![New bill](docs/screenshots/new-bill.jpg)
+
+**Invoice** — saved bill with items, payment method and total
+
+![Invoice](docs/screenshots/invoice.jpg)
+
 ## Features
 
 | Area | What it does |
