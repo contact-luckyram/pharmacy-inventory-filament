@@ -31,13 +31,13 @@ class PharmacyStatsOverview extends StatsOverviewWidget
         $stockValue = (float) Batch::sellable()->selectRaw('coalesce(sum(quantity * cost_price), 0) as value')->value('value');
 
         return [
-            Stat::make("Today's sales", Number::currency($todaySales, 'INR', 'en_IN'))
+            Stat::make("Today's sales", Number::currency($todaySales, 'INR', 'en_IN', 0))
                 ->description($change === null ? 'No sales yesterday' : sprintf('%+.0f%% vs yesterday', $change))
                 ->descriptionIcon($change !== null && $change < 0 ? Heroicon::ArrowTrendingDown : Heroicon::ArrowTrendingUp)
                 ->color($change !== null && $change < 0 ? 'danger' : 'success')
                 ->chart($lastSevenDays),
 
-            Stat::make('Stock value', Number::currency($stockValue, 'INR', 'en_IN'))
+            Stat::make('Stock value', Number::currency($stockValue, 'INR', 'en_IN', 0))
                 ->description('At cost, unexpired batches')
                 ->descriptionIcon(Heroicon::OutlinedArchiveBox)
                 ->color('primary'),

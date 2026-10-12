@@ -20,15 +20,26 @@ class SalesSeeder extends Seeder
 
         // Two weeks of billing history, ending today.
         foreach (range(13, 0) as $daysAgo) {
-            $billsToday = mt_rand(4, 9);
+            $day = today()->subDays($daysAgo);
 
-            for ($b = 0; $b < $billsToday; $b++) {
-                $soldAt = today()->subDays($daysAgo)->setTime(mt_rand(9, 20), mt_rand(0, 59));
+            // Shop hours 9 AM to 9 PM; today's bills stop at the current time.
+            $opens = $day->copy()->setTime(9, 0);
+            $closes = $daysAgo === 0 ? now() : $day->copy()->setTime(21, 0);
 
-                if ($soldAt->isFuture()) {
-                    $soldAt = now()->subMinutes(mt_rand(5, 120));
-                }
+            // Before opening time, show this morning's first bills anyway so "today" isn't empty.
+            if ($closes->lessThanOrEqualTo($opens)) {
+                $opens = $day->copy();
+            }
 
+            $span = max(1, (int) $opens->diffInMinutes($closes));
+
+            // Sorted times keep invoice numbers in the same order as the clock.
+            $times = collect(range(1, mt_rand(4, 9)))
+                ->map(fn () => $opens->copy()->addMinutes(mt_rand(0, $span)))
+                ->sort()
+                ->values();
+
+            foreach ($times as $soldAt) {
                 $sale = Sale::create([
                     'user_id' => $cashier->id,
                     'customer_name' => $customers[array_rand($customers)],

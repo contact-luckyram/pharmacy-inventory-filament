@@ -57,7 +57,7 @@ class SaleForm
                                     ->required()
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Get $get, Set $set) => self::updateTotal($get, $set, '../../items', '../../total'))
-                                    ->columnSpan(2),
+                                    ->columnSpan(3),
                                 TextInput::make('unit_price')
                                     ->label('Price')
                                     ->numeric()
@@ -66,7 +66,7 @@ class SaleForm
                                     ->required()
                                     ->live(onBlur: true)
                                     ->afterStateUpdated(fn (Get $get, Set $set) => self::updateTotal($get, $set, '../../items', '../../total'))
-                                    ->columnSpan(4),
+                                    ->columnSpan(3),
                             ]),
                     ]),
 

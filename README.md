@@ -4,6 +4,8 @@ A demo admin panel for a retail pharmacy, built with **Laravel 13** and **Filame
 It tracks medicines by batch and expiry date, sells the oldest stock first, warns about
 low stock and expiring batches, and creates bills with live totals.
 
+**Live demo:** [medistock-xiyz.onrender.com/admin](https://medistock-xiyz.onrender.com/admin) — click **Sign in** (the form is pre-filled). Free hosting sleeps when idle, so the first visit can take about a minute.
+
 > Demo project by **Lucky Ram** (PHP / Laravel / Filament developer). All data is fictional seed data.
 
 ---
